@@ -1,16 +1,31 @@
 [gd_scene load_steps=2 format=3 uid="uid://b2s0ifh468ytb"]
 
-[sub_resource type="GDScript" id="GDScript_wc06c"]
-script/source = "extends Node
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-"
+[ext_resource type="Script" path="res://Playing_V.gd" id="1_4amq4"]
 
 [node name="Node" type="Node"]
-script = SubResource("GDScript_wc06c")
+script = ExtResource("1_4amq4")
+
+[node name="Label_Score" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 0.572
+anchor_top = 0.607
+anchor_right = 0.572
+anchor_bottom = 0.607
+offset_left = -415.16
+offset_top = -239.04
+offset_right = 61.84
+offset_bottom = -123.04
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "ddsfasgsdg"
+
+[node name="Button_back" type="Button" parent="."]
+offset_left = 532.0
+offset_top = 402.0
+offset_right = 827.0
+offset_bottom = 504.0
+theme_override_font_sizes/font_size = 40
+text = "back"
+
+[connection signal="pressed" from="Button_back" to="." method="_on_button_back_pressed"]
