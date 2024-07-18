@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhkynfq1mxoem"]
+
+[ext_resource type="Script" path="res://tetromino.gd" id="1_hyoaf"]
+
+[node name="Tetromino" type="Node"]
+script = ExtResource("1_hyoaf")
+
+[node name="Shape_1" type="Node2D" parent="."]
+
+[node name="Shape_2" type="Node2D" parent="."]
+
+[node name="Shape_3" type="Node2D" parent="."]
+
+[node name="Shape_4" type="Node2D" parent="."]
+
+[node name="Shape_5" type="Node2D" parent="."]
+
+[node name="Shape_6" type="Node2D" parent="."]
+
+[node name="Shape_7" type="Node2D" parent="."]

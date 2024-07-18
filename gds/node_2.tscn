@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://dolqokjc8k2df"]
+
+[ext_resource type="Script" path="res://Node2.gd" id="1_a80nk"]
+
+[node name="Node2" type="Node"]
+script = ExtResource("1_a80nk")
+
+[node name="next" type="Button" parent="."]
+offset_left = 404.0
+offset_top = 241.0
+offset_right = 793.0
+offset_bottom = 445.0
+theme_override_font_sizes/font_size = 100
+text = "back"
+
+[connection signal="pressed" from="next" to="." method="_on_next_pressed"]

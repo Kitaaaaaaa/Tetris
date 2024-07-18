@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=3 uid="uid://cies4gmk6snxk"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_ipju1"]
+
+[node name="main" type="Node"]
+script = ExtResource("1_ipju1")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -506.0
+offset_bottom = -437.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.968061, 0.936604)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 100
+text = "sfasdasd"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button1" type="Button" parent="."]
+offset_left = 649.0
+offset_top = 158.0
+offset_right = 1061.0
+offset_bottom = 309.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "push"
+
+[node name="next1" type="Button" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 95.0
+offset_top = -304.0
+offset_right = 474.0
+offset_bottom = -48.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 100
+text = "next"
+
+[connection signal="health_changed" from="." to="." method="_on_health_changed"]
+[connection signal="button_down" from="Button1" to="." method="_on_button_1_button_down"]
+[connection signal="button_up" from="Button1" to="." method="_on_button_1_button_up"]
+[connection signal="pressed" from="Button1" to="." method="_on_button_1_pressed"]
+[connection signal="pressed" from="next1" to="." method="_on_next_1_pressed"]
