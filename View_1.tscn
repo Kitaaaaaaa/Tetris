@@ -93,17 +93,17 @@ grow_vertical = 2
 text = "NORMAL"
 
 [node name="mode_3" type="Button" parent="."]
-offset_left = 817.0
-offset_top = 195.0
-offset_right = 1030.0
-offset_bottom = 272.0
+offset_left = 668.0
+offset_top = 324.0
+offset_right = 881.0
+offset_bottom = 401.0
 text = "HARD"
 
 [node name="mode_back" type="Button" parent="."]
-offset_left = 454.0
-offset_top = 491.0
-offset_right = 669.0
-offset_bottom = 576.0
+offset_left = 337.0
+offset_top = 734.0
+offset_right = 552.0
+offset_bottom = 819.0
 text = "BACK"
 
 [connection signal="pressed" from="Start_Button" to="." method="_on_start_button_pressed"]
