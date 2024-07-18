@@ -31,38 +31,6 @@ corner_radius_bottom_left = 20
 [node name="Background" type="Node"]
 script = ExtResource("1_5gusl")
 
-[node name="BG" type="Sprite2D" parent="."]
-position = Vector2(585, 258)
-scale = Vector2(2.05208, 2.07407)
-
-[node name="2" type="Sprite2D" parent="."]
-position = Vector2(577, 298)
-scale = Vector2(2, 3.25926)
-
-[node name="Cl_1" type="Sprite2D" parent="."]
-position = Vector2(820, 206)
-scale = Vector2(2.92014, 3.40741)
-
-[node name="7" type="Sprite2D" parent="."]
-position = Vector2(858, 551)
-scale = Vector2(1.31597, 0.981481)
-
-[node name="4" type="Sprite2D" parent="."]
-position = Vector2(1055, 446)
-scale = Vector2(1.63194, 1.81481)
-
-[node name="5" type="Sprite2D" parent="."]
-position = Vector2(-31, 399)
-scale = Vector2(1.90625, 1.44444)
-
-[node name="6" type="Sprite2D" parent="."]
-position = Vector2(322, 592)
-scale = Vector2(3.62847, 0.814815)
-
-[node name="Cl_2" type="Sprite2D" parent="."]
-position = Vector2(583, 456)
-scale = Vector2(2.04167, 1.22222)
-
 [node name="Start_Button" type="Button" parent="."]
 process_mode = 3
 anchors_preset = 8
