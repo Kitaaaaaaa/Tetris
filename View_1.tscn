@@ -31,38 +31,6 @@ corner_radius_bottom_left = 20
 [node name="Background" type="Node"]
 script = ExtResource("1_5gusl")
 
-[node name="BG" type="Sprite2D" parent="."]
-position = Vector2(585, 258)
-scale = Vector2(2.05208, 2.07407)
-
-[node name="2" type="Sprite2D" parent="."]
-position = Vector2(577, 298)
-scale = Vector2(2, 3.25926)
-
-[node name="Cl_1" type="Sprite2D" parent="."]
-position = Vector2(820, 206)
-scale = Vector2(2.92014, 3.40741)
-
-[node name="7" type="Sprite2D" parent="."]
-position = Vector2(858, 551)
-scale = Vector2(1.31597, 0.981481)
-
-[node name="4" type="Sprite2D" parent="."]
-position = Vector2(1055, 446)
-scale = Vector2(1.63194, 1.81481)
-
-[node name="5" type="Sprite2D" parent="."]
-position = Vector2(-31, 399)
-scale = Vector2(1.90625, 1.44444)
-
-[node name="6" type="Sprite2D" parent="."]
-position = Vector2(322, 592)
-scale = Vector2(3.62847, 0.814815)
-
-[node name="Cl_2" type="Sprite2D" parent="."]
-position = Vector2(583, 456)
-scale = Vector2(2.04167, 1.22222)
-
 [node name="Start_Button" type="Button" parent="."]
 process_mode = 3
 anchors_preset = 8
@@ -125,17 +93,17 @@ grow_vertical = 2
 text = "NORMAL"
 
 [node name="mode_3" type="Button" parent="."]
-offset_left = 817.0
-offset_top = 195.0
-offset_right = 1030.0
-offset_bottom = 272.0
+offset_left = 668.0
+offset_top = 324.0
+offset_right = 881.0
+offset_bottom = 401.0
 text = "HARD"
 
 [node name="mode_back" type="Button" parent="."]
-offset_left = 454.0
-offset_top = 491.0
-offset_right = 669.0
-offset_bottom = 576.0
+offset_left = 337.0
+offset_top = 734.0
+offset_right = 552.0
+offset_bottom = 819.0
 text = "BACK"
 
 [connection signal="pressed" from="Start_Button" to="." method="_on_start_button_pressed"]
