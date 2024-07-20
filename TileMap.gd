@@ -70,22 +70,80 @@ var shapes := [i, t, o, z, s, l, j]
 #var game_running : bool
 
 #tilemap variables
-var tile_id : int = 3
+var tile_id : int = 0
 #var piece_atlas : Vector2i
 #var next_piece_atlas : Vector2i
 
 #layer variables
 #var board_layer : int = 0
-var active_layer : int = 1
+var active_layer : int = 3
+
+var current_block : int = 3
+
+var block_present
+var block_present_1
+
+var pos: Vector2i
+var x_pos:  int = 1
+var y_pos:  int = 1
 
 func _ready():
+	
+	pos = Vector2i(x_pos, y_pos)
+	block_present = draw_block(i[current_block], pos, 5)
 	pass
+	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	draw_piece(i[0], Vector2i(5,4), 5)
+	pass
 
-func draw_piece(piece, pos, tile_id):
-	for i in piece:
+
+func draw_block(block, pos, tile_id):
+	for i in block:
 		set_cell(active_layer, pos + i, tile_id, Vector2i(0,0))
+
+
+func rota():
+	block_present = delete_block()
+	if(current_block == 0):
+		current_block += 1
+	elif(current_block == 1):
+		current_block += 1
+	elif(current_block == 2):
+		current_block += 1
+	else:
+		current_block = 0 
+	block_present = draw_block(i[current_block], pos, 5)
+
+
+func _input(event):
+	if event.is_action_pressed("rotate"):
+		rota()
+	if event.is_action_pressed("move_left"):
+		move_left()
+	if event.is_action_pressed("move_right"):
+		move_right()
+
+	
+func move_left():
+	if( 1 < x_pos ):
+			x_pos -= 1
+			block_present = delete_block()
+			pos = Vector2i(x_pos, y_pos)
+			block_present = draw_block(i[current_block], pos, 5)
+
+
+func move_right():
+	if(  x_pos < 8):
+			x_pos += 1
+			block_present = delete_block()
+			pos = Vector2i(x_pos, y_pos)
+			block_present = draw_block(i[current_block], pos, 5)
+
+
+func delete_block():
+	for i in i[current_block]:
+		erase_cell(active_layer, pos + i)
+
 
