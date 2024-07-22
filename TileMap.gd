@@ -126,14 +126,20 @@ func rota():
 		current_block = 0 
 	block_type = shapes[shapes_type][current_block]
 	
-	if(checkmap_block_left() < 1):
-		pos = pos + Vector2i(1 - checkmap_block_left(),0)
+	if(check_impact()):
+		if(checkmap_block_left() < 1):
+			pos = pos + Vector2i(1 - checkmap_block_left(),0)
+			block_present = draw_block(block_type , pos, block_color)
+		elif(checkmap_block_right() > 10):
+			pos = pos - Vector2i(checkmap_block_right()-10,0)
+			block_present = draw_block(block_type , pos, block_color)
+		else:
+			block_present = draw_block(block_type , pos, block_color)
+	else :
+		current_block -= 1
+		block_type = shapes[shapes_type][current_block]
 		block_present = draw_block(block_type , pos, block_color)
-	elif(checkmap_block_right() > 10):
-		pos = pos - Vector2i(checkmap_block_right()-10,0)
-		block_present = draw_block(block_type , pos, block_color)
-	else:
-		block_present = draw_block(block_type , pos, block_color)
+	
 
 # dịch phải
 func move_left():
@@ -188,7 +194,7 @@ func check_impact():
 	else:
 		return false
 
-#di chuyển khối rơi xuống
+#khối rơi xuống
 func falling():
 	if check_impact():
 		block_present = delete_block()
