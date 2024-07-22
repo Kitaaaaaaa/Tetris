@@ -1,20 +1,73 @@
-[gd_scene load_steps=2 format=3 uid="uid://dhkynfq1mxoem"]
+[gd_scene load_steps=3 format=3 uid="uid://dhkynfq1mxoem"]
 
 [ext_resource type="Script" path="res://tetromino.gd" id="1_hyoaf"]
+[ext_resource type="Script" path="res://Shape.gd" id="2_bybqy"]
 
 [node name="Tetromino" type="Node"]
 script = ExtResource("1_hyoaf")
 
-[node name="Shape_1" type="Node2D" parent="."]
+[node name="Shape" type="Node2D" parent="."]
+script = ExtResource("2_bybqy")
+tetro = "I"
+shape_0 = [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1)]
+shape_90 = [Vector2i(2, 0), Vector2i(2, 1), Vector2i(2, 2), Vector2i(2, 3)]
+shape_180 = [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2)]
+shape_270 = [Vector2i(1, 0), Vector2i(1, 1), Vector2i(1, 2), Vector2i(1, 3)]
+color_block = "Blue"
 
-[node name="Shape_2" type="Node2D" parent="."]
+[node name="Shape_T" type="Node2D" parent="."]
+script = ExtResource("2_bybqy")
+tetro = "T"
+shape_0 = [Vector2i(1, 0), Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1)]
+shape_90 = [Vector2i(1, 0), Vector2i(1, 1), Vector2i(2, 1), Vector2i(1, 2)]
+shape_180 = [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(1, 2)]
+shape_270 = [Vector2i(1, 0), Vector2i(0, 1), Vector2i(1, 1), Vector2i(1, 2)]
+color_block = "Green"
 
-[node name="Shape_3" type="Node2D" parent="."]
+[node name="Shape_O" type="Node2D" parent="."]
+script = ExtResource("2_bybqy")
+tetro = "O"
+shape_0 = [Vector2i(0, 0), Vector2i(1, 0), Vector2i(0, 1), Vector2i(1, 1)]
+shape_90 = [Vector2i(0, 0), Vector2i(1, 0), Vector2i(0, 1), Vector2i(1, 1)]
+shape_180 = [Vector2i(0, 0), Vector2i(1, 0), Vector2i(0, 1), Vector2i(1, 1)]
+shape_270 = [Vector2i(0, 0), Vector2i(1, 0), Vector2i(0, 1), Vector2i(1, 1)]
+color_block = "Orangge"
 
-[node name="Shape_4" type="Node2D" parent="."]
+[node name="Shape_J" type="Node2D" parent="."]
+script = ExtResource("2_bybqy")
+tetro = "J"
+shape_0 = [Vector2i(0, 0), Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1)]
+shape_90 = [Vector2i(1, 0), Vector2i(2, 0), Vector2i(1, 1), Vector2i(1, 2)]
+shape_180 = [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(2, 2)]
+shape_270 = [Vector2i(1, 0), Vector2i(1, 1), Vector2i(0, 2), Vector2i(1, 2)]
+color_block = "LightBlue"
 
-[node name="Shape_5" type="Node2D" parent="."]
+[node name="Shape_L" type="Node2D" parent="."]
+script = ExtResource("2_bybqy")
+tetro = "L"
+shape_0 = [Vector2i(2, 0), Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1)]
+shape_90 = [Vector2i(1, 0), Vector2i(1, 1), Vector2i(1, 2), Vector2i(2, 2)]
+shape_180 = [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(0, 2)]
+shape_270 = [Vector2i(0, 0), Vector2i(1, 0), Vector2i(1, 1), Vector2i(1, 2)]
+color_block = "Purple"
 
-[node name="Shape_6" type="Node2D" parent="."]
+[node name="Shape_S" type="Node2D" parent="."]
+script = ExtResource("2_bybqy")
+tetro = "S"
+shape_0 = [Vector2i(1, 0), Vector2i(2, 0), Vector2i(0, 1), Vector2i(1, 1)]
+shape_90 = [Vector2i(1, 0), Vector2i(1, 1), Vector2i(2, 1), Vector2i(2, 2)]
+shape_180 = [Vector2i(1, 1), Vector2i(2, 1), Vector2i(0, 2), Vector2i(1, 2)]
+shape_270 = [Vector2i(0, 0), Vector2i(0, 1), Vector2i(1, 1), Vector2i(1, 2)]
+color_block = "Red"
 
-[node name="Shape_7" type="Node2D" parent="."]
+[node name="Shape_Z" type="Node2D" parent="."]
+script = ExtResource("2_bybqy")
+tetro = "Z"
+shape_0 = [Vector2i(0, 0), Vector2i(1, 0), Vector2i(1, 1), Vector2i(2, 1)]
+shape_90 = [Vector2i(2, 0), Vector2i(1, 1), Vector2i(2, 1), Vector2i(1, 2)]
+shape_180 = [Vector2i(0, 1), Vector2i(1, 1), Vector2i(1, 2), Vector2i(2, 2)]
+shape_270 = [Vector2i(1, 0), Vector2i(0, 1), Vector2i(1, 1), Vector2i(0, 2)]
+color_block = "Yellow"
+
+[node name="Shape2" type="TileMap" parent="."]
+format = 2
