@@ -45,44 +45,20 @@ var j := [j_0, j_90, j_180, j_270]
 
 var shapes := [i, t, o, z, s, l, j]
 
-#grid variables
-#const COLS : int = 10
-#const ROWS : int = 20
 
-#movement variables
-#const directions := [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.DOWN]
-#var steps : Array
-#const steps_req : int = 50
-#const start_pos := Vector2i(5, 1)
-#var cur_pos : Vector2i
-#var speed : float
-#const ACCEL : float = 0.25
 
-#game piece variables
-#var piece_type
-#var next_piece_type
-#var rotation_index : int = 0
-#var active_piece : Array
-
-#game variables
-#var score : int
 #const REWARD : int = 100
-#var game_running : bool
+var game_running : bool
 
-#tilemap variables
 var tile_id : int = 0
-#var piece_atlas : Vector2i
-#var next_piece_atlas : Vector2i
 
-#layer variables
-#var board_layer : int = 0
 var active_layer : int = 3
 
-var current_block : int =  0
+var current_block : int 
 
 var block_present
 var block_type
-@export var shapes_type: int 
+var shapes_type: int 
 
 var pos: Vector2i
 
@@ -94,20 +70,26 @@ var x_check_pos
 var block_color: int
 
 var speed: float
+var time_elapsed : float =0.0
 
 func _ready():
-	
+	game_running = true
+	check_mode()
 	pos = Vector2i(x_pos, y_pos)
+	shapes_type =randi_range(0,6)
+	current_block =randi_range(0,3)
 	block_type = shapes[shapes_type][current_block]
 	block_color = randf_range(4,11)
 	block_present = draw_block(block_type, pos, block_color)
-	
 	pass
-	
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
+
 func _process(delta):
-	
+	time_elapsed += delta
+	if(time_elapsed >= 1/speed):
+		if(game_running == true):
+			falling()
+			time_elapsed = 0
 	pass
 
 func _input(event):
@@ -117,7 +99,8 @@ func _input(event):
 		move_left()
 	if event.is_action_pressed("move_right"):
 		move_right()
-	pass
+	if event.is_action_pressed("move_down"):
+		falling()
 
 # vẽ khối 
 func draw_block(block, pos, tile_id):
@@ -193,3 +176,37 @@ func check_mode():
 	else:
 		speed = 10.0
 
+#kiểm tra khối có chạm đáy hoặc khối khác không
+func check_impact():
+	var max_y = 0
+	for i in block_type:
+		check_pos =pos + i
+		if(max_y < check_pos[1]):
+			max_y = check_pos[1]
+	if(max_y < 20):
+		return true
+	else:
+		return false
+
+#di chuyển khối rơi xuống
+func falling():
+	if check_impact():
+		block_present = delete_block()
+		pos = pos + Vector2i(0,1)
+		block_present = draw_block(block_type , pos, block_color)
+	else:
+		shapes_type = randi_range(0,6)
+		current_block = randi_range(0,3)
+		pos = Vector2i(x_pos, y_pos)
+		block_type = shapes[shapes_type][current_block]
+		block_color = randf_range(4,11)
+		block_present = draw_block(block_type, pos, block_color)
+
+#
+func end_game():
+	var min_y = 20
+	for i in block_type:
+		check_pos =pos + i
+		if(min_y > check_pos[1]):
+			min_y = check_pos[1]
+	pass
