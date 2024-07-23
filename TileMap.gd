@@ -73,6 +73,7 @@ var speed: float
 var time_elapsed : float =0.0
 
 func _ready():
+	$Button_continue.hide()
 	game_running = true
 	check_mode()
 	pos = Vector2i(x_pos, y_pos)
@@ -86,8 +87,8 @@ func _ready():
 
 func _process(delta):
 	time_elapsed += delta
-	if(time_elapsed >= 1/speed):
-		if(game_running == true):
+	if(game_running == true):
+		if(time_elapsed >= 1/speed):
 			falling()
 			time_elapsed = 0
 	pass
@@ -101,6 +102,10 @@ func _input(event):
 		move_right()
 	if event.is_action_pressed("move_down"):
 		falling()
+	if event.is_action_pressed("pause_game"):
+		get_tree().paused = true
+		$Button_continue.show()
+
 
 # vẽ khối 
 func draw_block(block, pos, tile_id):
@@ -216,3 +221,17 @@ func end_game():
 		if(min_y > check_pos[1]):
 			min_y = check_pos[1]
 	pass
+
+
+
+
+
+# Nút bấm dừng trò chơi
+func _on_button_continue_pressed():
+	get_tree().paused = false
+	$Button_continue.hide()
+
+# Nút bấm bắt đầu lại trò chơi
+func _on_button_newgame_pressed():
+	set_process(false)
+	get_tree().reload_current_scene()
