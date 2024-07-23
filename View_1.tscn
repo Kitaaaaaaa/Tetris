@@ -71,44 +71,5 @@ theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_fr2he")
 text = "EXIT"
 
-[node name="mode_1" type="Button" parent="."]
-offset_left = 37.0
-offset_top = 324.0
-offset_right = 267.0
-offset_bottom = 401.0
-text = "EASY"
-
-[node name="mode_2" type="Button" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -128.0
-offset_top = -156.0
-offset_right = 106.0
-offset_bottom = -74.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "NORMAL"
-
-[node name="mode_3" type="Button" parent="."]
-offset_left = 657.0
-offset_top = 324.0
-offset_right = 870.0
-offset_bottom = 401.0
-text = "HARD"
-
-[node name="mode_back" type="Button" parent="."]
-offset_left = 352.0
-offset_top = 695.0
-offset_right = 567.0
-offset_bottom = 780.0
-text = "BACK"
-
 [connection signal="pressed" from="Start_Button" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Exit_Button" to="." method="_on_exit_button_pressed"]
-[connection signal="pressed" from="mode_1" to="." method="_on_mode_1_pressed"]
-[connection signal="pressed" from="mode_2" to="." method="_on_mode_2_pressed"]
-[connection signal="pressed" from="mode_3" to="." method="_on_mode_3_pressed"]
-[connection signal="pressed" from="mode_back" to="." method="_on_mode_back_pressed"]
