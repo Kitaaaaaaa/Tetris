@@ -59,7 +59,6 @@ var current_block : int
 var block_present
 var block_type
 var shapes_type: int 
-var fall_blocks : Array[Vector2i] = []
 var pos: Vector2i
 
 var x_pos:  int = 4
@@ -76,7 +75,6 @@ func _ready():
 	$Button_continue.hide()
 	game_running = true
 	check_mode()
-	fall_blocks = []
 	add_shape()
 	pass
 
@@ -133,16 +131,20 @@ func rota():
 	else:
 		current_block = 0 
 	block_type = shapes[shapes_type][current_block]
-	if checkmap_block_right() > 10:
-		pos -= Vector2i(checkmap_block_right()-checkmap_block_left()-1,0)
-	if check_rotate():
-		block_type = shapes[shapes_type][current_block]
-		block_present = draw_block(block_type , pos, block_color)
-	else :
+	if(check_impact() ):
+			if checkmap_block_right() > 10:
+				pos -= Vector2i(checkmap_block_right()-checkmap_block_left()-1,0)
+			if check_rotate():
+				block_type = shapes[shapes_type][current_block]
+				block_present = draw_block(block_type , pos, block_color)
+			else :
+				current_block -= 1
+				block_type = shapes[shapes_type][current_block]
+				block_present = draw_block(block_type , pos, block_color)
+	else:
 		current_block -= 1
 		block_type = shapes[shapes_type][current_block]
 		block_present = draw_block(block_type , pos, block_color)
-	
 
 func check_rotate():
 	for i in block_type:
@@ -223,24 +225,24 @@ func falling():
 		block_present = draw_block(block_type , pos, block_color)
 	else:
 		block_present = draw_block(block_type , pos, block_color)
-		for i in  block_type:
-			fall_blocks.append(pos + i)
 		if !end_game():
-			#var i_line = 20
-			#while i_line >= miny():
-				#if check_line(i_line):
-					#del_line(i_line)
-					#falling_line(i_line)
-					#i_line -= 1
+			var i_line = maxy()
+			var my =miny()
+			while i_line >= my:
+				if check_line(i_line):
+					del_line(i_line)
+					falling_line(i_line)
+					my += 1
+				else:
+					i_line -= 1
 			add_shape()
 		else:
 			game_running = false
 
 #kiểm tra điểu kiện kết thúc: có đủ chỗ để vẽ khối mới vào không
 func end_game():
-	pos = Vector2i(x_pos, y_pos)
 	for i in block_type:
-		check_pos = pos + i
+		check_pos = Vector2i(x_pos, y_pos) + i
 		if(get_cell_source_id(active_layer,check_pos,false) != -1):
 			return true
 	return false
@@ -255,24 +257,30 @@ func check_line(y):
 func del_line(y):
 	for i in range(10):
 		erase_cell(active_layer,Vector2i(i+1, y))
-		fall_blocks.erase(Vector2i(i+1, y))
 
 func miny():
 	var min_y = 20
-	for i in fall_blocks:
+	for i in block_type:
 		check_pos = pos + i
 		if (min_y > check_pos[1]):
 			min_y = check_pos[1]
-		return min_y
+	return min_y
+
+func maxy():
+	var max_y = 0
+	for i in block_type:
+		check_pos = pos + i
+		if (max_y < check_pos[1]):
+			max_y = check_pos[1]
+	return max_y
 
 func falling_line(y):
 	var z = y-1
-	while z >= miny():
+	while z >= 1:
 		for i in range(10):
 			set_cell(active_layer, Vector2i(i+1, z+1), get_cell_source_id(active_layer,Vector2i(i+1, z),false), Vector2i(0, 0))
-			fall_blocks.append(Vector2i(i+1,z+1))
-			fall_blocks.erase(Vector2i(i+1, z))
-			z -= 1
+			erase_cell(active_layer, Vector2i(i+1, z))
+		z -= 1
 
 # Nút bấm dừng trò chơi
 func _on_button_continue_pressed():
