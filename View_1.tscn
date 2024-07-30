@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bemrx42bxj1la"]
+[gd_scene load_steps=5 format=3 uid="uid://bemrx42bxj1la"]
 
 [ext_resource type="Script" path="res://View_1.gd" id="1_5gusl"]
+[ext_resource type="Texture2D" uid="uid://cohygccad6vge" path="res://assets/Bg.jpg" id="2_icr7a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wjaib"]
 bg_color = Color(0.996078, 0.870588, 0.788235, 1)
@@ -31,6 +32,11 @@ corner_radius_bottom_left = 20
 [node name="Background" type="Node"]
 script = ExtResource("1_5gusl")
 
+[node name="Bg" type="Sprite2D" parent="."]
+position = Vector2(576, 488)
+scale = Vector2(0.4, 0.5)
+texture = ExtResource("2_icr7a")
+
 [node name="Start_Button" type="Button" parent="."]
 process_mode = 3
 anchors_preset = 8
@@ -45,7 +51,8 @@ offset_bottom = 45.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.682353, 0.635294, 0.807843, 1)
-theme_override_colors/font_pressed_color = Color(0.97, 0.5917, 0.76824, 1)
+theme_override_colors/font_hover_color = Color(0.682353, 0.635294, 0.807843, 1)
+theme_override_colors/font_outline_color = Color(0.192324, 7.12335e-06, 0.82188, 1)
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_wjaib")
@@ -65,7 +72,8 @@ offset_bottom = 56.96
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.721569, 0.662745, 0.831373, 1)
-theme_override_colors/font_pressed_color = Color(0.97, 0.5917, 0.76824, 1)
+theme_override_colors/font_hover_color = Color(0.682353, 0.635294, 0.807843, 1)
+theme_override_colors/font_outline_color = Color(0.192324, 7.12335e-06, 0.82188, 1)
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_fr2he")
