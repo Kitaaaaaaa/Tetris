@@ -77,9 +77,11 @@ var speed: float
 var time_elapsed : float =0.0
 
 func _ready():
+	Global.score = 0
 	$Button_continue.hide()
 	game_running = true
 	check_mode()
+	update_score()
 	pos = Vector2i(x_pos, y_pos)
 	shapes_type = randi_range(0,6)
 	current_block = randi_range(0,3)
@@ -88,6 +90,10 @@ func _ready():
 	block_present = draw_block(block_type, pos, block_color)
 	future_Block()
 
+func update_score():
+	$"../Highest_score2".text = str( Global.highest_score)
+	$"../Overall_score2".text = str( Global.sum_score)
+	$"../Score2".text = str( Global.score)
 
 func _process(delta):
 	time_elapsed += delta
@@ -269,6 +275,7 @@ func falling():
 				else:
 					i_line -= 1
 			add_shape()
+			update_score()
 		else:
 			game_running = false
 
@@ -290,6 +297,12 @@ func check_line(y):
 func del_line(y):
 	for i in range(10):
 		erase_cell(active_layer,Vector2i(i+1, y))
+	Global.score += 100
+	Global.sum_score += 100
+	if Global.score >= Global.highest_score:
+		Global.highest_score = Global.score
+
+
 
 func miny():
 	var min_y = 20

@@ -1,8 +1,9 @@
 extends Node
 
 var set_mode : int
-var highest_score : int
-var sum_score: int
+var highest_score : int = 0
+var sum_score: int = 0
+var score : int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
