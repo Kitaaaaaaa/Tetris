@@ -57,6 +57,7 @@ var active_layer : int = 3
 var current_block : int 
 
 var block_present
+var future_shape
 var block_type
 var shapes_type: int 
 var pos: Vector2i
@@ -65,6 +66,10 @@ var x_pos:  int = 4
 var y_pos:  int = 1
 var check_pos
 var x_check_pos
+
+var f_shapes_type : int
+var f_block : int
+var f_block_color : int
 
 var block_color: int
 
@@ -75,8 +80,13 @@ func _ready():
 	$Button_continue.hide()
 	game_running = true
 	check_mode()
-	add_shape()
-	pass
+	pos = Vector2i(x_pos, y_pos)
+	shapes_type = randi_range(0,6)
+	current_block = randi_range(0,3)
+	block_type = shapes[shapes_type][current_block]
+	block_color = randi_range(4,10)
+	block_present = draw_block(block_type, pos, block_color)
+	future_Block()
 
 
 func _process(delta):
@@ -106,13 +116,24 @@ func draw_block(block, pos, tile_id):
 	for i in block:
 		set_cell(active_layer, pos + i, tile_id, Vector2i(0,0))
 
+func future_Block():
+	f_shapes_type = randi_range(0, 6)
+	f_block = randi_range(0, 3)
+	f_block_color = randi_range(4, 10)
+	future_shape = draw_block(shapes[f_shapes_type][f_block], Vector2i(15, 2), f_block_color)
+
+
+
 func add_shape():
 	pos = Vector2i(x_pos, y_pos)
-	shapes_type =randi_range(0,6)
-	current_block =randi_range(0,3)
+	shapes_type = f_shapes_type
+	current_block = f_block
 	block_type = shapes[shapes_type][current_block]
-	block_color = randf_range(4,11)
+	block_color = f_block_color
+	for i in block_type:
+		erase_cell(active_layer, Vector2i(15, 2) + i)
 	block_present = draw_block(block_type, pos, block_color)
+	future_Block()
 
 # xóa khối 
 func delete_block():
