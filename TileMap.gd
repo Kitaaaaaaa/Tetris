@@ -120,9 +120,13 @@ func future_Block():
 	f_shapes_type = randi_range(0, 6)
 	f_block = randi_range(0, 3)
 	f_block_color = randi_range(4, 10)
-	future_shape = draw_block(shapes[f_shapes_type][f_block], Vector2i(15, 2), f_block_color)
-
-
+	if(f_shapes_type == 0):
+		if(f_block == 0 || f_block == 2):
+			future_shape = draw_block(shapes[f_shapes_type][f_block], Vector2i(15, 2), f_block_color)
+		else:
+			future_shape = draw_block(shapes[f_shapes_type][f_block], Vector2i(16, 2), f_block_color)
+	else:
+		future_shape = draw_block(shapes[f_shapes_type][f_block], Vector2i(16, 2), f_block_color)
 
 func add_shape():
 	pos = Vector2i(x_pos, y_pos)
@@ -130,8 +134,16 @@ func add_shape():
 	current_block = f_block
 	block_type = shapes[shapes_type][current_block]
 	block_color = f_block_color
-	for i in block_type:
-		erase_cell(active_layer, Vector2i(15, 2) + i)
+	if(f_shapes_type == 0):
+		if(f_block == 0 || f_block == 2):
+			for i in block_type:
+				erase_cell(active_layer, Vector2i(15, 2) + i)
+		else:
+			for i in block_type:
+				erase_cell(active_layer, Vector2i(16, 2) + i)
+	else:
+		for i in block_type:
+			erase_cell(active_layer, Vector2i(16, 2) + i)
 	block_present = draw_block(block_type, pos, block_color)
 	future_Block()
 
