@@ -120,5 +120,97 @@ offset_right = 755.0
 offset_bottom = 672.0
 text = "NEW GAME"
 
+[node name="Highest_score" type="Label" parent="."]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -356.0
+offset_top = -64.0
+offset_right = -229.0
+offset_bottom = -41.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "HIGHEST SCORE:"
+vertical_alignment = 1
+
+[node name="Highest_score2" type="Label" parent="."]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -189.0
+offset_top = -57.0
+offset_right = -62.0
+offset_bottom = -34.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "0
+"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Overall_score" type="Label" parent="."]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -359.0
+offset_top = -28.0
+offset_right = -230.0
+offset_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "OVERALL SCORE:"
+vertical_alignment = 1
+
+[node name="Overall_score2" type="Label" parent="."]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -26.0
+offset_right = -63.0
+offset_bottom = -3.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="."]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -361.0
+offset_top = 16.0
+offset_right = -305.0
+offset_bottom = 39.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "SCORE:"
+
+[node name="Score2" type="Label" parent="."]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -118.0
+offset_top = 19.0
+offset_right = -62.0
+offset_bottom = 42.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "0"
+horizontal_alignment = 2
+
 [connection signal="pressed" from="TileMap/Button_continue" to="TileMap" method="_on_button_continue_pressed"]
 [connection signal="pressed" from="TileMap/Button_newgame" to="TileMap" method="_on_button_newgame_pressed"]
