@@ -1,15 +1,24 @@
 extends Node
 
 var set_mode : int
-var highest_score : int = 0
-var sum_score: int = 0
+var highest_score : int 
 var score : int
+var highest_score_mode : Array[int] =[0,0,0]
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+func read_file():
+	var file = FileAccess.open("res://Score.txt", FileAccess.READ)
+	var hs
+	for i in range(3):
+		hs = file.get_64()
+		if hs == null:
+			hs = 0
+		elif hs != 0:
+			highest_score_mode[i] = hs
+	file.close()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func write_file():
+	var file = FileAccess.open("res://Score.txt", FileAccess.WRITE)
+	highest_score_mode[set_mode] = highest_score
+	for i in highest_score_mode:
+		file.store_64(i)
+	file.close()
