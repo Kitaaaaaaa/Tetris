@@ -75,11 +75,14 @@ var block_color: int
 
 var speed: float
 var time_elapsed : float =0.0
-
 func _ready():
+	Global.read_file()
+	Global.score = 0
+	Global.highest_score = Global.highest_score_mode[Global.set_mode]
 	$Button_continue.hide()
 	game_running = true
 	check_mode()
+	update_score()
 	pos = Vector2i(x_pos, y_pos)
 	shapes_type = randi_range(0,6)
 	current_block = randi_range(0,3)
@@ -88,6 +91,9 @@ func _ready():
 	block_present = draw_block(block_type, pos, block_color)
 	future_Block()
 
+func update_score():
+	$"../Highest_score2".text = str( Global.highest_score)
+	$"../Score2".text = str( Global.score)
 
 func _process(delta):
 	time_elapsed += delta
@@ -95,7 +101,8 @@ func _process(delta):
 		if(time_elapsed >= 1/speed):
 			falling()
 			time_elapsed = 0
-	pass
+	else:
+		Global.write_file()
 
 func _input(event):
 	if event.is_action_pressed("rotate"):
@@ -109,6 +116,9 @@ func _input(event):
 	if event.is_action_pressed("pause_game"):
 		get_tree().paused = true
 		$Button_continue.show()
+	if event.is_action_pressed("play_back"):
+		Global.write_file()
+		get_tree().change_scene_to_file("res://set_mode.tscn")
 
 
 # vẽ khối 
@@ -228,9 +238,9 @@ func checkmap_block_right():
 
 
 func check_mode():
-	if(Global.set_mode == 1):
+	if(Global.set_mode == 0):
 		speed = 1.0
-	elif(Global.set_mode == 2):
+	elif(Global.set_mode == 1):
 		speed = 4.0
 	else:
 		speed = 10.0
@@ -269,6 +279,7 @@ func falling():
 				else:
 					i_line -= 1
 			add_shape()
+			update_score()
 		else:
 			game_running = false
 
@@ -290,6 +301,11 @@ func check_line(y):
 func del_line(y):
 	for i in range(10):
 		erase_cell(active_layer,Vector2i(i+1, y))
+	Global.score += 100
+	if Global.score >= Global.highest_score:
+		Global.highest_score = Global.score
+
+
 
 func miny():
 	var min_y = 20

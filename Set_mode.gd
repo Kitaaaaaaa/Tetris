@@ -12,17 +12,17 @@ func _process(delta):
 
 
 func _on_mode_1_pressed():
-	Global.set_mode=1
+	Global.set_mode=0
 	get_tree().change_scene_to_file("res://Playing_V.tscn")
 
 
 func _on_mode_2_pressed():
-	Global.set_mode=2
+	Global.set_mode=1
 	get_tree().change_scene_to_file("res://Playing_V.tscn")
 
 
 func _on_mode_3_pressed():
-	Global.set_mode=3
+	Global.set_mode=2
 	get_tree().change_scene_to_file("res://Playing_V.tscn")
 
 
