@@ -1,0 +1,109 @@
+[gd_scene load_steps=8 format=3 uid="uid://brgot405mp67m"]
+
+[ext_resource type="Texture2D" uid="uid://ke4dbml05idy" path="res://assets/Button_icons/Repeat-Right@4x.png" id="1_hrf8v"]
+[ext_resource type="Script" path="res://GameOver_layer.gd" id="1_lpd4k"]
+[ext_resource type="Texture2D" uid="uid://vpijhse7ytjd" path="res://assets/Button_icons/Exit@4x.png" id="2_ndxxy"]
+[ext_resource type="Texture2D" uid="uid://bydq6473la858" path="res://assets/Button_icons/Levels@4x.png" id="2_u66gk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2m1dw"]
+bg_color = Color(0.643137, 0.490196, 0.929412, 0.690196)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p6ii8"]
+bg_color = Color(0.862509, 0.767123, 1, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_uv4si"]
+font_size = 80
+font_color = Color(0, 0.976471, 0.984314, 1)
+outline_size = 4
+outline_color = Color(0.545098, 0.878431, 1, 1)
+shadow_size = 20
+shadow_color = Color(0.489449, 0.608407, 1, 0.647059)
+
+[node name="CanvasLayer" type="CanvasLayer"]
+process_mode = 2
+script = ExtResource("1_lpd4k")
+
+[node name="bg1" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -296.0
+offset_top = -224.0
+offset_right = 296.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_2m1dw")
+
+[node name="bg2" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -276.0
+offset_top = -176.0
+offset_right = 276.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_p6ii8")
+
+[node name="gameover_txt" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 0.285937
+anchor_top = 0.446354
+anchor_right = 0.714063
+anchor_bottom = 0.553646
+offset_left = -18.4995
+offset_top = -180.5
+offset_right = 9.49951
+offset_bottom = -173.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "GAMEOVER"
+label_settings = SubResource("LabelSettings_uv4si")
+metadata/_edit_use_anchors_ = true
+
+[node name="RePlay_bt" type="TextureButton" parent="."]
+offset_left = 248.0
+offset_top = 376.0
+offset_right = 383.0
+offset_bottom = 492.0
+texture_normal = ExtResource("1_hrf8v")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Level_bt" type="TextureButton" parent="."]
+offset_left = 413.0
+offset_top = 376.0
+offset_right = 548.0
+offset_bottom = 492.0
+texture_normal = ExtResource("2_u66gk")
+texture_pressed = ExtResource("2_u66gk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Exit_bt" type="TextureButton" parent="."]
+offset_left = 576.0
+offset_top = 376.0
+offset_right = 711.0
+offset_bottom = 492.0
+texture_normal = ExtResource("2_ndxxy")
+texture_pressed = ExtResource("2_ndxxy")
+ignore_texture_size = true
+stretch_mode = 0
+
+[connection signal="pressed" from="RePlay_bt" to="." method="_on_re_play_bt_pressed"]
+[connection signal="pressed" from="Level_bt" to="." method="_on_level_bt_pressed"]
+[connection signal="pressed" from="Exit_bt" to="." method="_on_exit_bt_pressed"]
