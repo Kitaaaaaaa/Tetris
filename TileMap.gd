@@ -202,25 +202,33 @@ func check_rotate():
 			return false
 	return true
 
-func check_move():
-	for i in block_type:
+func check_move_left():
+	for i in block_type: 
 		check_pos = pos + i
-		if get_cell_source_id(active_layer, check_pos + Vector2i(-1, 0), false) != -1:
-			return 1;
-		if get_cell_source_id(active_layer, check_pos + Vector2i(1, 0), false) != -1:
-			return 2;
+		var idl = get_cell_source_id(active_layer, check_pos + Vector2i(-1, 0), false)
+		if idl != -1:
+			return 1
 	return 0
+
+func check_move_right():
+	for i in block_type: 
+		check_pos = pos + i
+		var idr = get_cell_source_id(active_layer, check_pos + Vector2i(1, 0), false)
+		if idr != -1:
+			return 1
+	return 0
+
 # dịch trái
 func move_left():
 	block_present = delete_block()
-	if checkmap_block_left() > 1 && check_move() != 1: 
+	if checkmap_block_left() > 1 && check_move_left() == 0: 
 		pos = pos - Vector2i(1,0)
 	block_present = draw_block(block_type , pos, block_color)
 
 # dịch phải
 func move_right():
 	block_present = delete_block()
-	if checkmap_block_right() < 10 && check_move() != 2:
+	if checkmap_block_right() < 10 && check_move_right() == 0:
 		pos = pos + Vector2i(1,0)
 	block_present = draw_block(block_type , pos, block_color)
 
