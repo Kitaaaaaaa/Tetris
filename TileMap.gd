@@ -76,10 +76,12 @@ var block_color: int
 var speed: float
 var time_elapsed : float =0.0
 func _ready():
+	$"../GameOver_Layer".hide()
+	$"../Pause_Layer".hide()
 	Global.read_file()
 	Global.score = 0
 	Global.highest_score = Global.highest_score_mode[Global.set_mode]
-	$Button_continue.hide()
+
 	game_running = true
 	check_mode()
 	update_score()
@@ -90,6 +92,7 @@ func _ready():
 	block_color = randi_range(4,10)
 	block_present = draw_block(block_type, pos, block_color)
 	future_Block()
+
 
 func update_score():
 	$"../Highest_score2".text = str( Global.highest_score)
@@ -103,6 +106,8 @@ func _process(delta):
 			time_elapsed = 0
 	else:
 		Global.write_file()
+		get_tree().paused = true
+		$"../GameOver_Layer".show()
 
 func _input(event):
 	if event.is_action_pressed("rotate"):
@@ -115,7 +120,8 @@ func _input(event):
 		falling()
 	if event.is_action_pressed("pause_game"):
 		get_tree().paused = true
-		$Button_continue.show()
+		$"../Pause_Layer".show()
+		
 	if event.is_action_pressed("play_back"):
 		Global.write_file()
 		get_tree().change_scene_to_file("res://set_mode.tscn")
@@ -331,12 +337,4 @@ func falling_line(y):
 			erase_cell(active_layer, Vector2i(i+1, z))
 		z -= 1
 
-# Nút bấm dừng trò chơi
-func _on_button_continue_pressed():
-	get_tree().paused = false
-	$Button_continue.hide()
 
-# Nút bấm bắt đầu lại trò chơi
-func _on_button_newgame_pressed():
-	set_process(false)
-	get_tree().reload_current_scene()
